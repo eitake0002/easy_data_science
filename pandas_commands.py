@@ -61,14 +61,18 @@ def table_data_chunk(table, chunksize):
 # ---------------------------------------------------------------------
 # Search data
 # ---------------------------------------------------------------------
+
+
 def more_than_num(df, col, num):
-  return df.query("{0} > {1}".format(col, num))
+    return df.query("{0} > {1}".format(col, num))
+
 
 def less_than_num(df, col, num):
-  return df.query("{0} < {1}".format(col, num))
+    return df.query("{0} < {1}".format(col, num))
+
 
 def between_num(df, col, num1, num2):
-  return df.query("{1} > {2} & {1} < {3}".format(col, num1, num2))
+    return df.query("{1} > {2} & {1} < {3}".format(col, num1, num2))
 
 if __name__ == '__main__':
     df = table_data("articles")
