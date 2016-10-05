@@ -58,7 +58,20 @@ def table_data_chunk(table, chunksize):
     qry = "SELECT * FROM {0}".format(table)
     return pd.read_sql(qry, connector, chunksize=chunksize)
 
-if __name__ == '__main__':
-    print(table_data("articles"))
-    print(table_data_chunk("articles", 100))
+# ---------------------------------------------------------------------
+# Search data
+# ---------------------------------------------------------------------
+def more_than_num(df, col, num):
+  return df.query("{0} > {1}".format(col, num))
 
+def less_than_num(df, col, num):
+  return df.query("{0} < {1}".format(col, num))
+
+def between_num(df, col, num1, num2):
+  return df.query("{1} > {2} & {1} < {3}".format(col, num1, num2))
+
+if __name__ == '__main__':
+    df = table_data("articles")
+    between_num(df, "id", 10, 15)
+    print(more_than_num(df, "id", 10))
+    print(less_than_num(df, "id", 10))
