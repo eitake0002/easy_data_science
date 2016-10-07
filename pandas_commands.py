@@ -59,16 +59,77 @@ def table_data_chunk(table, chunksize):
     return pd.read_sql(qry, connector, chunksize=chunksize)
 
 # ---------------------------------------------------------------------
+# csv
+# ---------------------------------------------------------------------
+def read_csv(csv_path):
+    """
+    Read csv
+    
+    Prameters
+    ---------
+    csv_path : str
+        csv file path to read.
+    """
+    pd.read_csv(csv_path)
+
+# ---------------------------------------------------------------------
 # Search data
 # ---------------------------------------------------------------------
 def more_than_num(df, col, num):
-  return df.query("{0} > {1}".format(col, num))
+    """
+    Get more than num data from dataframe. 
+
+    Ex: 
+        more_than_num(df, "id", 1)
+
+    Parameters
+    ----------
+    df  : DataFrame
+        DataFrame
+    col : column name
+        Column name.
+    num : integer
+        More than value
+    """
+    return df.query("{0} > {1}".format(col, num))
 
 def less_than_num(df, col, num):
-  return df.query("{0} < {1}".format(col, num))
+    """
+    Get less than num data from dataframe.
 
-def between_num(df, col, num1, num2):
-  return df.query("{1} > {2} & {1} < {3}".format(col, num1, num2))
+    Ex:
+        more_than_num(df, "id", 100)
+
+    Parameters
+    ----------
+    df  : DataFrame
+        DataFrame
+    col : column name
+        Column name.
+    num : integer
+        Less than value
+    """
+    return df.query("{0} < {1}".format(col, num))
+
+def between_num(df, col, low, high):
+    """
+    Get between data from dataframe.
+
+    Ex:
+        between_num(df, "id", 1, 100)
+
+    Parameters
+    ----------
+    df  : DataFrame
+        DataFrame
+    col : column name
+        Column name.
+    low : integer
+        Less than value
+    high : integer
+	More than value
+    """
+    return df.query("{1} > {2} & {1} < {3}".format(col, low, high))
 
 if __name__ == '__main__':
     df = table_data("articles")
