@@ -86,7 +86,7 @@ def read_csv(csv_path):
 # Generate random/test data
 # ---------------------------------------------------------------------
 
-def series_simple_df(num):
+def simple_df(num):
     """
     Generate simple dataframe
 
@@ -96,6 +96,21 @@ def series_simple_df(num):
         Number of craete data.
     """
     return pd.DataFrame([i for i in range(num)])
+
+def simple_df_with_col(col, num):
+    """
+    Generate simple dataframe with column.
+
+    Parameters:
+    -----------
+    col : string
+        Column name.
+    num : integer
+        Number of values to generate.
+    """
+    return pd.DataFrame({
+        col : [i for i in range(num)]
+    })
 
 # ---------------------------------------------------------------------
 # Search data
