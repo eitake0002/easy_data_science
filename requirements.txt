@@ -1,5 +1,5 @@
-
 pep8
 autopep8
 PyMySQL
 pandas
+ipython
