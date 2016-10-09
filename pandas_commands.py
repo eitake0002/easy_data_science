@@ -173,4 +173,4 @@ def between_num(df, col, low, high):
     high : integer
         More than value
     """
-    return df.query("{1} > {2} & {1} < {3}".format(col, low, high))
+    return df.query("{0} > {1} & {0} < {2}".format(col, low, high))
