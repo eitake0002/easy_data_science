@@ -139,7 +139,6 @@ def less_than_num(df, col, num):
     """
     return df.query("{0} < {1}".format(col, num))
 
->>>>>>> 9a2e0e5a2cf4591d96faff17b05155b72ba7744b
 
 def between_num(df, col, low, high):
     """
