@@ -12,11 +12,11 @@ numpy, pandas, scikit-learn
 
 # Install
 
-1. Install libraries with pip.
+1) Install libraries with pip.
 
 $ pip install -r requirements.txt
 
-2. Import modules.
+2) Import modules.
 
 Ex)
 import pandas_commands as pc
