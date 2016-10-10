@@ -1,8 +1,8 @@
 import unittest
-import pandas_commands as pc
+import data_frame as pc
 import pandas as pd
 
-class TestPandasCommands(unittest.TestCase):
+class TestDataFrame(unittest.TestCase):
 
     def test_simple_df(self):
         self.assertEqual(len(pc.simple_df(10)), 10)
