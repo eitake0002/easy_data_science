@@ -18,5 +18,9 @@ class TestRandomData(unittest.TestCase):
         data = rd.random_list_str(10)
         self.assertEqual(isinstance(data, list), True)
 
+    def test_random_df_str(self):
+        data = rd.random_df_str(10)
+        self.assertEqual(isinstance(data, pd.DataFrame), True)
+
 if __name__ == '__main__':
     unittest.main()

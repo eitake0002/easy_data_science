@@ -69,6 +69,18 @@ def random_list_str(num):
         random_ary.append(tmp)
     return random_ary
 
+def random_df_str(num):
+    """
+    Generate random str into DataFrame.
+
+    Parameters
+    ----------
+    num : int
+        Number of values to generate data.
+    """
+    np_data = random_list_str(num)
+    return pd.DataFrame(np_data)
+
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
