@@ -160,7 +160,9 @@ def between_num(df, col, low, high):
     Get between data from dataframe.
 
     Ex:
-        between_num(df, "id", 1, 100)
+        df = simple_df_with_col("id", 10)
+        between_num(df, "id", 1, 8)
+        # 8
 
     Parameters
     ----------
