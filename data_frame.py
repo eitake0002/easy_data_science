@@ -1,4 +1,6 @@
-# -*- coding: UTF-8 -*-
+"""
+Easy utilities to use dataframe with pandas.
+"""
 
 import pymysql.cursors
 import pandas as pd
