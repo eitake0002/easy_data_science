@@ -51,7 +51,7 @@ def table_data(table):
         Table name.
     """
     qry = "SELECT * FROM {0}".format(table)
-    return pd.read_sql(qry, connector)
+    return pd.read_sql(qry, mysql_connect())
 
 
 def table_data_chunk(table, chunksize):
@@ -66,12 +66,11 @@ def table_data_chunk(table, chunksize):
         Number of chunk size to process.
     """
     qry = "SELECT * FROM {0}".format(table)
-    return pd.read_sql(qry, connector, chunksize=chunksize)
+    return pd.read_sql(qry, mysql_connect(), chunksize=chunksize)
 
 # ---------------------------------------------------------------------
 # csv
 # ---------------------------------------------------------------------
-
 
 def read_csv(csv_path):
     """
