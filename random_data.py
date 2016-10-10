@@ -55,6 +55,14 @@ def random_str(num):
     return rand_str
 
 def random_list_str(num):
+    """
+    Generate random str data into list.
+
+    Parameters
+    ----------
+    num : int
+        Number of values to generate data.
+    """
     random_ary = []
     for i in range(num):
         tmp = random_str(10)
