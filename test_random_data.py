@@ -14,5 +14,9 @@ class TestRandomData(unittest.TestCase):
         data = rd.random_str(10)
         self.assertEqual(isinstance(data, str), True)
 
+    def test_random_list_str(self):
+        data = rd.random_list_str(10)
+        self.assertEqual(isinstance(data, list), True)
+
 if __name__ == '__main__':
     unittest.main()

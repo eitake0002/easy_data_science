@@ -39,7 +39,7 @@ def random_df_int(num, maximum):
 
 def random_str(num):
     """
-    Generate random string array.
+    Generate random string.
 
     Parameters 
     ----------
@@ -53,6 +53,13 @@ def random_str(num):
         rand_str += random.choice(str_list)
 
     return rand_str
+
+def random_list_str(num):
+    random_ary = []
+    for i in range(num):
+        tmp = random_str(10)
+        random_ary.append(tmp)
+    return random_ary
 
 if __name__ == '__main__':
     import doctest
