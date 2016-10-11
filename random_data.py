@@ -21,35 +21,29 @@ import time
 # --------------------------------------------------------------------
 
 
-def rand_int(num, maximum):
-    """
-    Generate integer random data.
-
-    >>> len(rand_int(100, 100))
-    100
-
-    Parameters
-    ----------
-    num : integer
-        Number of values to generate
-    """
-    return np.random.randint(0, maximum, num)
-
-
-def random_df_int(num, maximum):
+def random_int(num, maximum, data_type="df"):
     """
     Generate random int data into DataFrame.
 
-    >>> len(random_df_int(100, 100))
-    100
-
     Parameters
     ----------
-    num : integer
+    num : int
         Number of values to generate.
+    maximum : int
+        Maximum size of integer.
+    data_type : str
+        Data type to return
+        df : DataFrame
+        np : np.ndarray
     """
+
     random_data_np = np.random.randint(0, maximum, num)
-    return pd.DataFrame(random_data_np)
+    if data_type == "np":
+        return random_data_np
+    elif data_type == "df":
+        return pd.DataFrame(random_data_np)
+    else:
+        return (False, "Error : data_type argument")
 
 # --------------------------------------------------------------------
 # Generate str

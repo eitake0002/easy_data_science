@@ -6,9 +6,19 @@ import datetime
 
 class TestRandomData(unittest.TestCase):
 
-    def test_simple_df(self):
-        data = rd.rand_int(10, 10)
+    def test_random_int(self):
+
+        data = rd.random_int(0, 10)
+        self.assertEqual(isinstance(data, pd.DataFrame), True)
+
+        data = rd.random_int(0, 10, "df")
+        self.assertEqual(isinstance(data, pd.DataFrame), True)
+
+        data = rd.random_int(0, 10, "np")
         self.assertEqual(isinstance(data, np.ndarray), True)
+
+        data = rd.random_int(0, 10, "invalid")
+        self.assertEqual(data[0], False)
 
     def test_random_str(self):
         data = rd.random_str(10)
