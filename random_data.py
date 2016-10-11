@@ -135,6 +135,17 @@ def random_datetime_df(num):
 
     Ex:
         random_datetime_df(100)
+
+    Return sample
+    ---------------------
+                        0
+    0 2009-10-17 18:42:04
+    1 2006-07-15 15:03:29
+    2 1984-04-16 13:40:55
+    3 1992-04-16 08:25:44
+    4 1988-07-08 08:01:43
+    5 2001-08-09 04:54:48
+
     """
     datetime_list = random_datetime_list(num)
     return pd.DataFrame(datetime_list)
