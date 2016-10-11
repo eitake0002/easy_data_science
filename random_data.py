@@ -7,6 +7,8 @@ Generate random data with numpy module.
 import numpy as np
 import pandas as pd
 import random
+import datetime
+import time
 
 def rand_int(num, maximum):
     """
@@ -80,6 +82,25 @@ def random_df_str(num):
     """
     np_data = random_list_str(num)
     return pd.DataFrame(np_data)
+
+def random_datetime():
+    """
+    Generate random time object.
+    The random range is between unix_time to now.
+
+    Ex:
+        random_datetime()
+
+    """
+    now = datetime.datetime.now()
+    unix_time = time.mktime(now.timetuple())
+
+    random_unix_time = np.random.randint(0, unix_time)
+    return datetime.datetime.fromtimestamp(random_unix_time)
+
+#def df_datetime_from_today():
+
+#def df_datetime_from_to():
 
 if __name__ == '__main__':
     import doctest

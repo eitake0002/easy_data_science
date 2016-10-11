@@ -2,7 +2,7 @@ import unittest
 import random_data as rd
 import pandas as pd
 import numpy as np
-
+import datetime
 
 class TestRandomData(unittest.TestCase):
 
@@ -21,6 +21,10 @@ class TestRandomData(unittest.TestCase):
     def test_random_df_str(self):
         data = rd.random_df_str(10)
         self.assertEqual(isinstance(data, pd.DataFrame), True)
+
+    def test_random_datetime(self):
+        data = rd.random_datetime()
+        self.assertEqual(isinstance(data, datetime.datetime), True)
 
 if __name__ == '__main__':
     unittest.main()
