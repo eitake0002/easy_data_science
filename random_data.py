@@ -34,12 +34,12 @@ def random_int(num, maximum, data_type="df"):
     data_type : str
         Data type to return
         df : DataFrame
-        np : np.ndarray
+        np : np.ndarray # this is reshape(num, 1)
     """
 
     random_data_np = np.random.randint(0, maximum, num)
     if data_type == "np":
-        return random_data_np
+        return random_data_np.reshape(num, 1)
     elif data_type == "df":
         return pd.DataFrame(random_data_np)
     else:
