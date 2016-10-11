@@ -1,7 +1,13 @@
 # -*- coding: UTF-8 -*-
 
 """
-Generate random data with numpy module.
+Generate random/sample data.
+
+What you can do...
+
+- Generate random int.
+- Generate random str.
+- Generate random/ordered dateobject
 """
 
 import numpy as np
@@ -9,6 +15,10 @@ import pandas as pd
 import random
 import datetime
 import time
+
+# --------------------------------------------------------------------
+# Generate int
+# --------------------------------------------------------------------
 
 def rand_int(num, maximum):
     """
@@ -38,6 +48,10 @@ def random_df_int(num, maximum):
     """
     random_data_np = np.random.randint(0, maximum, num)
     return pd.DataFrame(random_data_np)
+
+# --------------------------------------------------------------------
+# Generate str
+# --------------------------------------------------------------------
 
 def random_str(num):
     """
@@ -70,6 +84,10 @@ def random_list_str(num):
         tmp = random_str(10)
         random_ary.append(tmp)
     return random_ary
+
+# --------------------------------------------------------------------
+# Generate timeobject
+# --------------------------------------------------------------------
 
 def random_df_str(num):
     """
@@ -111,10 +129,21 @@ def random_datetime_list(num):
 
     return datetime_list
 
+def random_datetime_df(num):
+    """
+    Generate datetime object into DataFrame.
+
+    Ex:
+        random_datetime_df(100)
+    """
+    datetime_list = random_datetime_list(num)
+    return pd.DataFrame(datetime_list)
+
 #def df_datetime_from_today():
 
 #def df_datetime_from_to():
 
 if __name__ == '__main__':
+    print(random_datetime_df(10))
     import doctest
     doctest.testmod()

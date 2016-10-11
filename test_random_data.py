@@ -30,5 +30,9 @@ class TestRandomData(unittest.TestCase):
         data = rd.random_datetime_list(10)
         self.assertEqual(isinstance(data, list), True)
 
+    def test_random_datetime_df(self):
+        data = rd.random_datetime_df(10)
+        self.assertEqual(isinstance(data, pd.DataFrame), True)
+
 if __name__ == '__main__':
     unittest.main()
