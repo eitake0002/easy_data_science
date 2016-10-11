@@ -26,5 +26,9 @@ class TestRandomData(unittest.TestCase):
         data = rd.random_datetime()
         self.assertEqual(isinstance(data, datetime.datetime), True)
 
+    def test_random_datetime(self):
+        data = rd.random_datetime_list(10)
+        self.assertEqual(isinstance(data, list), True)
+
 if __name__ == '__main__':
     unittest.main()

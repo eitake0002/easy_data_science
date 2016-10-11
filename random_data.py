@@ -98,6 +98,19 @@ def random_datetime():
     random_unix_time = np.random.randint(0, unix_time)
     return datetime.datetime.fromtimestamp(random_unix_time)
 
+def random_datetime_list(num):
+    """
+    Generate random date object into list.
+
+    Ex : 
+        random_datetime_list(100)
+    """
+    datetime_list = []
+    for i in range(num):
+        datetime_list.append(random_datetime())
+
+    return datetime_list
+
 #def df_datetime_from_today():
 
 #def df_datetime_from_to():
