@@ -20,6 +20,7 @@ import time
 # Generate int
 # --------------------------------------------------------------------
 
+
 def rand_int(num, maximum):
     """
     Generate integer random data.
@@ -33,6 +34,7 @@ def rand_int(num, maximum):
         Number of values to generate
     """
     return np.random.randint(0, maximum, num)
+
 
 def random_df_int(num, maximum):
     """
@@ -53,11 +55,12 @@ def random_df_int(num, maximum):
 # Generate str
 # --------------------------------------------------------------------
 
+
 def random_str(num):
     """
     Generate random string.
 
-    Parameters 
+    Parameters
     ----------
     num : integer
         Number of values to generate data.
@@ -69,6 +72,7 @@ def random_str(num):
         rand_str += random.choice(str_list)
 
     return rand_str
+
 
 def random_list_str(num):
     """
@@ -89,6 +93,7 @@ def random_list_str(num):
 # Generate timeobject
 # --------------------------------------------------------------------
 
+
 def random_df_str(num):
     """
     Generate random str into DataFrame.
@@ -100,6 +105,7 @@ def random_df_str(num):
     """
     np_data = random_list_str(num)
     return pd.DataFrame(np_data)
+
 
 def random_datetime():
     """
@@ -116,11 +122,12 @@ def random_datetime():
     random_unix_time = np.random.randint(0, unix_time)
     return datetime.datetime.fromtimestamp(random_unix_time)
 
+
 def random_datetime_list(num):
     """
     Generate random date object into list.
 
-    Ex : 
+    Ex :
         random_datetime_list(100)
     """
     datetime_list = []
@@ -128,6 +135,7 @@ def random_datetime_list(num):
         datetime_list.append(random_datetime())
 
     return datetime_list
+
 
 def random_datetime_df(num):
     """
@@ -150,12 +158,16 @@ def random_datetime_df(num):
     datetime_list = random_datetime_list(num)
     return pd.DataFrame(datetime_list)
 
-def df_datetime_from_today(days):
+
+def df_order_datetime(num, unit="days"):
     """
-    Generate datetime object from day to :days
-    
-    Ex : 
-        df_datetime_from_today(10)
+    Generate ordered datetime object.
+
+    Ex :
+        df_order_datetime(10, days)
+        df_order_datetime(10, hours)
+        df_order_datetime(10, minutes)
+        df_order_datetime(10, seconds)
 
     Return sample
     ----------------------------
@@ -164,17 +176,57 @@ def df_datetime_from_today(days):
     1 2016-10-12 12:05:55.892882
     2 2016-10-13 12:05:55.892893
     3 2016-10-14 12:05:55.892902
+    ...
+
+    Parameters
+    ----------
+    num : int
+        Number of values to generate.
+    unit : str
+        time unit. you can choose from 'days', 'hours', 'minutes', 'seconds'
 
     """
     datetime_list = [datetime.datetime.today()]
-    for i in range(days):
-        tmp = datetime.datetime.today() + datetime.timedelta(i)
-        datetime_list.append(tmp)
- 
+    if unit == "days":
+
+        for i in range(num):
+            tmp = datetime.datetime.today() + datetime.timedelta(days=i)
+            datetime_list.append(tmp)
+
+    elif unit == "hours":
+
+        for i in range(num):
+            tmp = datetime.datetime.today() + datetime.timedelta(hours=i)
+            datetime_list.append(tmp)
+
+    elif unit == 'minutes':
+
+        for i in range(num):
+            tmp = datetime.datetime.today() + datetime.timedelta(minutes=i)
+            datetime_list.append(tmp)
+
+    elif unit == 'seconds':
+        for i in range(num):
+            tmp = datetime.datetime.today() + datetime.timedelta(seconds=i)
+            datetime_list.append(tmp)
+
+    else:
+        err = """
+            Error: please check 'unit' argument.
+            days, housrs, minutes can be used.
+        """
+        return (False, err)
+
     return pd.DataFrame(datetime_list)
 
-#def df_datetime_from_to():
+# def df_datetime_from_to():
 
 if __name__ == '__main__':
+    data = df_order_datetime(10, 'days')
+    data = df_order_datetime(10, 'hours')
+    data = df_order_datetime(10, 'minutes')
+    data = df_order_datetime(10, "seconds")
+    data = df_order_datetime(10)
+    print(data)
     import doctest
     doctest.testmod()
