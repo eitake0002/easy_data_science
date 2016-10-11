@@ -219,14 +219,6 @@ def df_order_datetime(num, unit="days"):
 
     return pd.DataFrame(datetime_list)
 
-# def df_datetime_from_to():
-
 if __name__ == '__main__':
-    data = df_order_datetime(10, 'days')
-    data = df_order_datetime(10, 'hours')
-    data = df_order_datetime(10, 'minutes')
-    data = df_order_datetime(10, "seconds")
-    data = df_order_datetime(10)
-    print(data)
     import doctest
     doctest.testmod()
