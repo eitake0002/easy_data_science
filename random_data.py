@@ -150,11 +150,31 @@ def random_datetime_df(num):
     datetime_list = random_datetime_list(num)
     return pd.DataFrame(datetime_list)
 
-#def df_datetime_from_today():
+def df_datetime_from_today(days):
+    """
+    Generate datetime object from day to :days
+    
+    Ex : 
+        df_datetime_from_today(10)
+
+    Return sample
+    ----------------------------
+                               0
+    0 2016-10-11 12:05:55.892863
+    1 2016-10-12 12:05:55.892882
+    2 2016-10-13 12:05:55.892893
+    3 2016-10-14 12:05:55.892902
+
+    """
+    datetime_list = [datetime.datetime.today()]
+    for i in range(days):
+        tmp = datetime.datetime.today() + datetime.timedelta(i)
+        datetime_list.append(tmp)
+ 
+    return pd.DataFrame(datetime_list)
 
 #def df_datetime_from_to():
 
 if __name__ == '__main__':
-    print(random_datetime_df(10))
     import doctest
     doctest.testmod()
