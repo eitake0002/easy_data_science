@@ -17,6 +17,9 @@ class TestRandomData(unittest.TestCase):
         data = rd.random_int(0, 10, "np")
         self.assertEqual(isinstance(data, np.ndarray), True)
 
+        data = rd.random_int(10, 100, "se")
+        self.assertEqual(isinstance(data, pd.Series), True)
+
         data = rd.random_int(0, 10, "invalid")
         self.assertEqual(data[0], False)
 
