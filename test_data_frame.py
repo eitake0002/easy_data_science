@@ -40,5 +40,17 @@ class TestDataFrame(unittest.TestCase):
         df  = pc.inner_join(df1, df2)
         self.assertEqual(isinstance(df, pd.DataFrame), True)
 
+    def test_missing_value(self):
+
+        # Remove missing values.
+        df = pd.DataFrame([1,2,3,None])
+        data = pc.missing_value(df)
+        self.assertEqual(isinstance(df, pd.DataFrame), True)
+
+        # fill out missing values with fill_value.
+        df = pd.DataFrame([1,2,3,None])
+        data = pc.missing_value(df, action="fill", fill_value=100)
+        self.assertEqual(isinstance(df, pd.DataFrame), True)
+
 if __name__ == '__main__':
     unittest.main()

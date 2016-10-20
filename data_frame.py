@@ -255,3 +255,54 @@ def inner_join(df1, df2):
     df2 : pd.DataFrame
     """
     return pd.concat([df1, df2], axis=1, join='inner')
+
+# ---------------------------------------------------------------------
+# missing value
+# ---------------------------------------------------------------------
+
+def missing_value(data, action='remove', fill_value=1):
+    """
+    Remove or replacing missing value.
+
+    Ex1: Remove missing value
+        df = pd.DataFrame([1,2,3,None])
+        missing_value(df)
+
+    Return
+    -------
+         0
+    0  1.0
+    1  2.0
+    2  3.0
+
+    Ex2: Fill missing value
+        df = pd.DataFrame([1,2,3,None])
+        missing_value(df, action="fill", fill_value=100)
+
+    Return
+    ---------
+            0
+    0     1.0
+    1     2.0
+    2     3.0
+    3  1000.0
+
+    Parameters
+    ----------
+    data : pd.DataFrame, pd.Series
+        Data to action
+    action : str
+        remove : Remove missing values.
+        fill   : Fill out missing values. fill_value parameters is required.
+    fill_value : str, int
+        Fill out missing value.
+    
+    """
+    if action == "remove":
+        after_data = data.dropna()
+    elif action == "fill":
+        after_data = data.fillna(fill_value)
+    else:
+        return (False, "parameter invalid")
+
+    return after_data
