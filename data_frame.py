@@ -220,7 +220,7 @@ def concat_col(df1, df2):
 
     Sample return
     -------------
-    0  0
+       0  0
     0  1  4
     1  2  5
     2  3  6 
@@ -231,3 +231,27 @@ def concat_col(df1, df2):
     df2 : pd.DataFrame
     """
     return pd.concat([df1, df2], axis=1)
+
+def inner_join(df1, df2):
+    """
+    Inner join 2 dataframes.
+
+    Ex:
+        df1 = pd.DataFrame([1,2,3])
+        df2 = pd.DataFrame([4,5,6])
+        inner_join(df1, df2)
+
+    Sample return
+    -------------
+        0   0
+    0   1   4
+    1   2   5
+    2   3   6
+    3   4   7
+
+    Parameters
+    ----------
+    df1 : pd.DataFrame
+    df2 : pd.DataFrame
+    """
+    return pd.concat([df1, df2], axis=1, join='inner')

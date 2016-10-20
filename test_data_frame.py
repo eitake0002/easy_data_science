@@ -33,5 +33,12 @@ class TestDataFrame(unittest.TestCase):
         df2 = pd.DataFrame([4,5,6])
         df  = pc.concat_col(df1, df2)
         self.assertEqual(isinstance(df, pd.DataFrame), True)
+    
+    def test_inner_join(self):
+        df1 = pd.DataFrame([1,2,3])
+        df2 = pd.DataFrame([4,5,6])
+        df  = pc.inner_join(df1, df2)
+        self.assertEqual(isinstance(df, pd.DataFrame), True)
+
 if __name__ == '__main__':
     unittest.main()
