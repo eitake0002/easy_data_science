@@ -177,3 +177,34 @@ def between_num(df, col, low, high):
         More than value
     """
     return df.query("{0} > {1} & {0} < {2}".format(col, low, high))
+
+# ---------------------------------------------------------------------
+# concatenate
+# ---------------------------------------------------------------------
+
+def concat_row(df1, df2):
+    """
+    Concatenate as row.
+
+    Ex:
+        df1 = pd.DataFrame([1,2,3])
+        df2 = pd.DataFrame([4,5,6])
+        concat_row(df1, df2)
+
+    Sample return
+    -------------
+       0
+    0  1
+    1  2
+    2  3
+    3  4
+    4  5
+    5  6
+
+    Parameters
+    ----------
+    df1 : pd.DataFrame
+    df2 : pd.DataFrame
+
+    """
+    return pd.concat([df1, df2]).reset_index(drop=True)
