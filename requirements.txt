@@ -5,3 +5,7 @@ pandas
 ipython
 scikit-learn
 scipy
+beautifulsoup4
+git+https://github.com/yono/python-extractcontent.git
+flask
+matplotlib
