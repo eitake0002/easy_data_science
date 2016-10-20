@@ -208,3 +208,26 @@ def concat_row(df1, df2):
 
     """
     return pd.concat([df1, df2]).reset_index(drop=True)
+
+def concat_col(df1, df2):
+    """
+    Concatenate 2 dataframes for column
+
+    Ex:
+        df1 = pd.DataFrame([1,2,3])
+        df2 = pd.DataFrame([4,5,6])
+        concat_col(df1, df2)
+
+    Sample return
+    -------------
+    0  0
+    0  1  4
+    1  2  5
+    2  3  6 
+
+    Parameters
+    ----------
+    df1 : pd.DataFrame
+    df2 : pd.DataFrame
+    """
+    return pd.concat([df1, df2], axis=1)
