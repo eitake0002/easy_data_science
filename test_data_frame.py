@@ -52,5 +52,10 @@ class TestDataFrame(unittest.TestCase):
         data = pc.missing_value(df, action="fill", fill_value=100)
         self.assertEqual(isinstance(df, pd.DataFrame), True)
 
+        # check missing value.
+        df = pd.DataFrame([1,2,3,None])
+        data = pc.missing_value(df, action="check")
+        self.assertEqual(isinstance(df, pd.DataFrame), True)
+
 if __name__ == '__main__':
     unittest.main()

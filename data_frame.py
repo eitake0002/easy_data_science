@@ -268,24 +268,13 @@ def missing_value(data, action='remove', fill_value=1):
         df = pd.DataFrame([1,2,3,None])
         missing_value(df)
 
-    Return
-    -------
-         0
-    0  1.0
-    1  2.0
-    2  3.0
-
     Ex2: Fill missing value
         df = pd.DataFrame([1,2,3,None])
         missing_value(df, action="fill", fill_value=100)
 
-    Return
-    ---------
-            0
-    0     1.0
-    1     2.0
-    2     3.0
-    3  1000.0
+    Ex3: Check nan
+        df = pd.DataFrame([1,2,3, None])
+        missing_value(df, action='check')
 
     Parameters
     ----------
@@ -294,14 +283,21 @@ def missing_value(data, action='remove', fill_value=1):
     action : str
         remove : Remove missing values.
         fill   : Fill out missing values. fill_value parameters is required.
+        check  : check nan.
     fill_value : str, int
         Fill out missing value.
+
+    Retruns
+    -------
+    DataFrame : Series or DataFrame    
     
     """
     if action == "remove":
         after_data = data.dropna()
     elif action == "fill":
         after_data = data.fillna(fill_value)
+    elif action == "check":
+        after_data = data > 0
     else:
         return (False, "parameter invalid")
 
