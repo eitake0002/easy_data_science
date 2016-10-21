@@ -8,8 +8,11 @@ class TestRandomData(unittest.TestCase):
 
     def test_random_int(self):
 
+        data = rd.random_int(10)
+        self.assertEqual(isinstance(data, np.ndarray), True)
+
         data = rd.random_int(0, 10)
-        self.assertEqual(isinstance(data, pd.DataFrame), True)
+        self.assertEqual(isinstance(data, np.ndarray), True)
 
         data = rd.random_int(0, 10, "df")
         self.assertEqual(isinstance(data, pd.DataFrame), True)

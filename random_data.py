@@ -21,7 +21,7 @@ import time
 # --------------------------------------------------------------------
 
 
-def random_int(num, maximum, data_type="df"):
+def random_int(num, maximum=9999, data_type="np"):
     """
     Generate random int data into DataFrame.
 
