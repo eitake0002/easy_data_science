@@ -21,8 +21,9 @@ import time
 # --------------------------------------------------------------------
 
 
-def random_int(num, maximum=9999, data_type="np"):
-    """
+def random_int(num, maximum=9999, data_type='np', cols=None):
+    """random_int(num, maximum=9999, data_type='np', cols=None)
+
     Generate random int data into DataFrame.
 
     Parameters
@@ -36,6 +37,12 @@ def random_int(num, maximum=9999, data_type="np"):
         se : Series
         df : DataFrame
         np : np.ndarray # this is reshape(num, 1)
+    cols : list
+        List of column names, when only data_type is "df"
+
+    Returns
+    -------
+    Array like random data.
     """
 
     random_data_np = np.random.randint(0, maximum, num)
@@ -44,7 +51,11 @@ def random_int(num, maximum=9999, data_type="np"):
     elif data_type == "se":
         return pd.Series(random_data_np)
     elif data_type == "df":
-        return pd.DataFrame(random_data_np)
+        if cols is None:
+            return pd.DataFrame(random_data_np)
+        else:
+            return pd.DataFrame(random_data_np, columns=cols)
+
     else:
         return (False, "Error : data_type argument")
 

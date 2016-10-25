@@ -8,22 +8,25 @@ class TestRandomData(unittest.TestCase):
 
     def test_random_int(self):
 
-        data = rd.random_int(10)
+        data = rd.random_int(1)
         self.assertEqual(isinstance(data, np.ndarray), True)
 
-        data = rd.random_int(0, 10)
+        data = rd.random_int(1, maximum=10)
         self.assertEqual(isinstance(data, np.ndarray), True)
 
-        data = rd.random_int(0, 10, "df")
+        data = rd.random_int(1, maximum=10, data_type='df')
         self.assertEqual(isinstance(data, pd.DataFrame), True)
 
-        data = rd.random_int(0, 10, "np")
+        data = rd.random_int(1, maximum=10, data_type="df", cols=["col_1"])
+        self.assertEqual(isinstance(data, pd.DataFrame), True)
+
+        data = rd.random_int(1, maximum=10, data_type="np")
         self.assertEqual(isinstance(data, np.ndarray), True)
 
-        data = rd.random_int(10, 100, "se")
+        data = rd.random_int(1, maximum=100, data_type="se")
         self.assertEqual(isinstance(data, pd.Series), True)
 
-        data = rd.random_int(0, 10, "invalid")
+        data = rd.random_int(1, maximum=10, data_type="invalid")
         self.assertEqual(data[0], False)
 
     def test_random_str(self):
