@@ -7,9 +7,9 @@ import datetime
 
 class TestClustering(unittest.TestCase):
 
-    def test_num_cluster(self):
+    def test_cluster(self):
         test_df = rd.random_int(10, 9999, 'np')
-        data = clustering.num_cluster(test_df, 10)
+        data = clustering.cluster(test_df, 10)
         self.assertEqual(isinstance(data, pd.DataFrame), True)
 
 if __name__ == '__main__':
