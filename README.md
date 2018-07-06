@@ -1,8 +1,6 @@
-# easy_data_science
-Easy data science utilities with python. The objective of easy_data_science is to provide easy way to data science for python programmers, especially forcusing on text analysing(mining).
+# python-utils
 
-# OS
-Amazon Linux AMI release 2016.03 or later.
+Python libraries for data science, data management, web scraping, database management, file manipulation etc...
 
 # Python
 Python3.0 or higher.
@@ -10,15 +8,24 @@ Python3.0 or higher.
 # Dependencies
 numpy, pandas, scikit-learn
 
-# Install
+# Installation
 
-1) Install libraries with pip.
+Install dependency packages and clone pyenv repository.
+```
+$ yum install gcc gcc-c++ make git openssl-devel bzip2-devel zlib-devel readline-devel sqlite-devel bzip2 sqlite zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel
+$ git clone git://github.com/yyuu/pyenv.git ~/.pyenv
+```
 
-$ pip install -r requirements.txt
+Add below scripts on ~/.bash_profile
+```
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+    export PATH=${PYENV_ROOT}/bin:$PATH
+    eval "$(pyenv init -)"
+fi
+```
 
-2) Import modules.
-
-Ex)
-import pandas_commands as pc
-
-Module is devided into each files. 
+Reload ~/.bash_profile
+```
+$ source ~/.bashrc
+```
