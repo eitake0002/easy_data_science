@@ -1,5 +1,3 @@
-# -*- coding: UTF-8 -*-
-
 """
 Generate random/sample data.
 
@@ -9,6 +7,7 @@ What you can do...
 - Generate random str.
 - Generate random/ordered dateobject
 """
+
 
 import numpy as np
 import pandas as pd
@@ -226,6 +225,7 @@ def df_order_datetime(num, unit="days"):
         return (False, err)
 
     return pd.DataFrame(datetime_list)
+
 
 if __name__ == '__main__':
     import doctest
