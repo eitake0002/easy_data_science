@@ -2,19 +2,12 @@
 Crawling and scraping.
 """
 
+from newspaper import Article
 import feedparser
 import urllib.request
 from bs4 import BeautifulSoup
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
-
-
-def get_main_text(url):
-    f = urllib.request.urlopen(url)
-    soup = BeautifulSoup(f.read(), "html.parser")
-    #soup = BeautifulSoup("aaa bbb ccc", "html.parser")
-    #text = soup.get_text()
-    return soup.get_text()
 
 
 def feed_rss(rss_url, description=False):
@@ -48,6 +41,18 @@ def feed_rss(rss_url, description=False):
 
 
 def feed_rss_list(rss_list_file):
+    """Feed from csv file
+
+    Parameters
+    ----------
+    rss_list_file : str
+        CSV file to load. 
+
+    Return
+    ------
+    list
+        RSS data from all site in CSV file.
+    """
 
     with open(rss_list_file) as f:
         rss_list = f.readlines()
@@ -60,6 +65,30 @@ def feed_rss_list(rss_list_file):
     return rss_all_list
 
 
-if __name__ == '__main__':
-    res = feed_rss_list("rss_list.csv")
-    pp.pprint(res)
+def extract_content(url):
+    """Extract content
+
+    Parameters
+    ----------
+    url : str
+        Aritlce URL to extract content. 
+
+    Return
+    ------
+    author : str
+    publish_date : datetime
+    text : str
+    top_image: str(url)
+    movies : list
+    """
+    article = Article(url)
+    article.download()
+    article.parse()
+
+    author = article.authors
+    publish_date = article.publish_date
+    text = article.text
+    top_image = article.top_image
+    movies = article.movies
+
+    return author, publish_date, text, top_image, movies
