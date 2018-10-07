@@ -112,11 +112,3 @@ def grouping(df_data, col_num=0):
 
     """
     pp.pprint(df_data.groupby(col_num).size())
-
-
-if __name__ == '__main__':
-    # upload_file()
-    # upload_file("test.log", "log-files-1234", "test.log")
-    # download_file("access_log", "log-files-1234", "access_log")
-    ip_list = extract_ip_address("access_log")
-    convert_from_list_to_df(ip_list)
