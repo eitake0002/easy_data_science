@@ -6,7 +6,7 @@ from newspaper import Article
 import newspaper
 import feedparser
 import urllib.request
-from bs4 import BeautifulSoup
+import nltk
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -66,35 +66,6 @@ def feed_rss_list(rss_list_file):
     return rss_all_list
 
 
-def extract_content(url):
-    """Extract content
-
-    Parameters
-    ----------
-    url : str
-        Aritlce URL to extract content. 
-
-    Return
-    ------
-    author : str
-    publish_date : datetime
-    text : str
-    top_image: str(url)
-    movies : list
-    """
-    article = Article(url)
-    article.download()
-    article.parse()
-
-    author = article.authors
-    publish_date = article.publish_date
-    text = article.text
-    top_image = article.top_image
-    movies = article.movies
-
-    return author, publish_date, text, top_image, movies
-
-
 def build_source(source_url):
     """Extract article urls from news source
 
@@ -114,3 +85,65 @@ def build_source(source_url):
         article_urls.append(article.url)
 
     return article_urls
+
+
+def extract_content(url):
+    """Extract content
+
+    Parameters
+    ----------
+    url : str
+        Aritlce URL to extract content. 
+
+    Return
+    ------
+    author : str
+    publish_date : datetime
+    summary : text
+    text : str
+    top_image: str(url)
+    movies : list
+    keywords : list
+    """
+    article = Article(url)
+    article.download()
+    article.parse()
+
+    title = article.title
+    text = article.text
+    author = article.authors
+    publish_date = article.publish_date
+    top_image = article.top_image
+    movies = article.movies
+    
+    nltk.download('punkt')
+    article.nlp()
+    keywords = article.keywords
+    summary = article.summary
+
+    return {
+        "title": title,
+        "summary": summary, 
+        "text": text, 
+        "link": url,
+        "author": author, 
+        "publish_date": publish_date, 
+        "top_image": top_image, 
+        "movies": movies, 
+        "keywords": keywords,
+    }
+
+def batch_extract_content(source_url, article_num=10, logging=True):
+    article_urls = build_source(source_url)
+    
+    contents = []
+    for idx, url in enumerate(article_urls):
+        if logging is True:
+            pp.pprint(url)
+            
+        content = extract_content(url)
+        contents.append(content)
+        if (idx + 1) == article_num:
+            break
+
+    return contents
