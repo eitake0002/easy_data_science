@@ -3,6 +3,7 @@ Crawling and scraping.
 """
 
 from newspaper import Article
+import newspaper
 import feedparser
 import urllib.request
 from bs4 import BeautifulSoup
@@ -92,3 +93,24 @@ def extract_content(url):
     movies = article.movies
 
     return author, publish_date, text, top_image, movies
+
+
+def build_source(source_url):
+    """Extract article urls from news source
+
+    Parameters
+    ----------
+    source_url : str
+        News source url.
+
+    Return
+    ------
+    Source list : list
+    """
+    paper = newspaper.build(source_url)
+
+    article_urls = []
+    for article in paper.articles:
+        article_urls.append(article.url)
+
+    return article_urls
