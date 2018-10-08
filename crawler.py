@@ -115,7 +115,7 @@ def extract_content(url):
     publish_date = article.publish_date
     top_image = article.top_image
     movies = article.movies
-    
+
     nltk.download('punkt')
     article.nlp()
     keywords = article.keywords
@@ -123,26 +123,49 @@ def extract_content(url):
 
     return {
         "title": title,
-        "summary": summary, 
-        "text": text, 
+        "summary": summary,
+        "text": text,
         "link": url,
-        "author": author, 
-        "publish_date": publish_date, 
-        "top_image": top_image, 
-        "movies": movies, 
+        "author": author,
+        "publish_date": publish_date,
+        "top_image": top_image,
+        "movies": movies,
         "keywords": keywords,
     }
 
+
 def batch_extract_content(source_url, article_num=10, logging=True):
+    """Extract content from multiple articles in source
+
+    Parameters
+    ----------
+    source_url : str
+        Source url to extract article contents. 
+
+    article_num : int
+        Number of articles to extract. 
+
+    logging : bool
+        Logging
+
+    Return
+    ------
+    contents : list
+    """
     article_urls = build_source(source_url)
-    
+
     contents = []
     for idx, url in enumerate(article_urls):
         if logging is True:
             pp.pprint(url)
-            
-        content = extract_content(url)
-        contents.append(content)
+
+        try:
+            content = extract_content(url)
+            contents.append(content)
+
+        except Exception as e:
+            print(e)
+
         if (idx + 1) == article_num:
             break
 
