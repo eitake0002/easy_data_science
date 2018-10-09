@@ -1,12 +1,6 @@
-# python-utils
+# Python utilities
 
-Python libraries for data science, data management, web scraping, database management, file manipulation etc...
-
-# Python
-Python3.0 or higher.
-
-# Dependencies
-numpy, pandas, scikit-learn
+Python3.6 or higher.
 
 # Installation
 
@@ -28,4 +22,12 @@ fi
 Reload ~/.bash_profile
 ```
 $ source ~/.bashrc
+```
+
+Install pyenv 3.6
+
+```
+$ pyenv install 3.6.6
+$ pyenv global 3.6.6
+$ python --version
 ```
