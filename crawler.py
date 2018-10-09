@@ -4,6 +4,7 @@ Crawling and scraping.
 
 from newspaper import Article
 import newspaper
+from multiprocessing import Pool, Process
 import feedparser
 import urllib.request
 import nltk
@@ -187,6 +188,29 @@ def batch_extract_content(source_url, article_num=10, logging=True):
     return contents
 
 
+def batch_extract_content_parallel(source_url, article_num=10, parallel_num=4):
+    """Extract content from multiple articles in source parallely.
+
+    Parameters
+    ----------
+    source_url : str
+        Source url to extract article contents. 
+
+    article_num : int
+        Number of articles to extract. 
+
+    Return
+    ------
+    contents : list
+    """
+    article_urls = build_source(source_url)
+    article_urls_slice = article_urls[0:article_num]
+
+    p = Pool(parallel_num)
+    contents = p.map(extract_content, article_urls_slice)
+    return contents
+
+
 if __name__ == '__main__':
 
     args = sys.argv
@@ -197,6 +221,9 @@ if __name__ == '__main__':
             Ex)
             [Get all articles in the site]
             python crawler.py batch http://www.yahoo.com/news
+            
+            [Get all articles in the site with parallel processing]
+            python crawler.py pbatch https://www.yahoo.com/news
             
             [Get content from single article]
             python crawler.py single http://www.yahoo.com/news/article
@@ -210,6 +237,10 @@ if __name__ == '__main__':
 
     if sys.argv[1] == 'batch':
         contents = batch_extract_content(sys.argv[2])
+        pp.pprint(contents)
+
+    elif sys.argv[1] == 'pbatch':
+        contents = batch_extract_content_parallel(sys.argv[2])
         pp.pprint(contents)
 
     elif sys.argv[1] == 'single':
