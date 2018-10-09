@@ -5,13 +5,12 @@ from email.mime.text import MIMEText
 import datetime
 import traceback
 
-FROM_MAIL = "mailto:noreply@occ-manager.com"
-TO_MAIL = "eiki.takeuchi@oracle.com"
+FROM_MAIL = FROM_MAIL
+TO_MAIL = TO_MAIL
 
 
 def send_mail(subject='ERR', message):
-    """
-    メール通知の関数です。
+    """Send mail function.
 
     Parameters
     ----------
@@ -46,6 +45,33 @@ def send_mail(subject='ERR', message):
         traceback.print_exc()
 
 
-if __name__ == '__main__':
-    subject = "[System Backup] <関数名> <引数（VMインスタンス名、スナップショット名など）>"
-    send_mail(subject, "Test Message")
+import smtplib
+from email.mime.text import MIMEText
+from email.utils import formatdate
+
+FROM_ADDRESS = MAIL_ADDRESS
+MY_PASSWORD = PASSWORD
+TO_ADDRESS = SEND_MAIL
+BCC = BCC_MAIL_ADDRESS
+SUBJECT = SUBJECT
+BODY = BODY
+
+
+def create_message(from_addr, to_addr, bcc_addrs, ubject, body):
+    msg = MIMEText(body)
+    msg['Subject'] = subject
+    msg['From'] = from_addr
+    msg['To'] = to_addr
+    msg['Bcc'] = bcc_addrs
+    msg['Date'] = formatdate()
+    return msg
+
+
+def send(from_addr, to_addrs, msg):
+    smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
+    smtpobj.ehlo()
+    smtpobj.starttls()
+    smtpobj.ehlo()
+    smtpobj.login(FROM_ADDRESS, MY_PASSWORD)
+    smtpobj.sendmail(from_addr, to_addrs, msg.as_string())
+    smtpobj.close()
