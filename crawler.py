@@ -7,6 +7,7 @@ import newspaper
 import feedparser
 import urllib.request
 import nltk
+import sys
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -122,7 +123,7 @@ def extract_content(url):
         pp.pprint(e)
         pp.pprint("ERROR : something wrong with url")
         return False
-        
+
     title = article.title
     text = article.text
     author = article.authors
@@ -184,3 +185,33 @@ def batch_extract_content(source_url, article_num=10, logging=True):
             break
 
     return contents
+
+
+if __name__ == '__main__':
+
+    args = sys.argv
+    if args[1] == '-h' or args[1] == '--help':
+        help_doc = """
+            python crawler.py [crawling_type] [url]
+            
+            Ex)
+            [Get all articles in the site]
+            python crawler.py batch http://www.yahoo.com/news
+            
+            [Get content from single article]
+            python crawler.py single http://www.yahoo.com/news/article
+            """
+        print(help_doc)
+        sys.exit()
+
+    elif len(args) == 2:
+        print("Arg is not defined")
+        sys.exit()
+
+    if sys.argv[1] == 'batch':
+        contents = batch_extract_content(sys.argv[2])
+        pp.pprint(contents)
+
+    elif sys.argv[1] == 'single':
+        contents = extract_content(sys.argv[2])
+        pp.pprint(contents)
