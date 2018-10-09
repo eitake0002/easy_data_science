@@ -78,7 +78,15 @@ def build_source(source_url):
     ------
     Source list : list
     """
-    paper = newspaper.build(source_url)
+    try:
+        paper = newspaper.build(source_url)
+    except Exception as e:
+        print(e)
+        return False
+
+    if paper.size() == 0:
+        pp.pprint("Warning: No articles found in the source.")
+        pp.pprint(source_url)
 
     article_urls = []
     for article in paper.articles:
@@ -105,10 +113,16 @@ def extract_content(url):
     movies : list
     keywords : list
     """
-    article = Article(url)
-    article.download()
-    article.parse()
+    try:
+        article = Article(url)
+        article.download()
+        article.parse()
 
+    except Exception as e:
+        pp.pprint(e)
+        pp.pprint("ERROR : something wrong with url")
+        return False
+        
     title = article.title
     text = article.text
     author = article.authors
