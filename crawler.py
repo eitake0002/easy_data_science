@@ -8,6 +8,7 @@ from multiprocessing import Pool, Process
 import feedparser
 import urllib.request
 import nltk
+from boilerpipe.extract import Extractor
 import sys
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
@@ -95,6 +96,13 @@ def build_source(source_url):
         article_urls.append(article.url)
 
     return article_urls
+
+
+def extract_content_jp(url):
+    """Extract content from Japanese article."""
+    extractor = Extractor(extractor='ArticleExtractor', url=url)
+    content = extractor.getText()
+    return content
 
 
 def extract_content(url):
